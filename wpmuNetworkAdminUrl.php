@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name:    Composer WordPress Network Admin
-Description:    Fixes issues with network-admin url when using wp-composer setup.
-Version:        1.1
+Plugin Name:    WPMU Network Admin Url
+Description:    Fixes network url's when running WordPress as multisite in a composer installed wp instance.
+Version:        1.0
 Author:         Sebastian Thulin
 */
 
