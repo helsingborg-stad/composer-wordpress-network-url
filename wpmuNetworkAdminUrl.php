@@ -13,8 +13,28 @@ class ComposerNetworkAdmin
 {
     public function __construct()
     {
+        if(!$this->shouldRun()) {
+            return;
+        }
         add_filter('network_admin_url', array($this, 'sanitizeNetworkAdminUrl'), 50, 2);
         add_filter('admin_url', array($this, 'sanitizeAdminUrl'), 50, 3);
+    }
+
+    public function shouldRun() {
+
+        if(!defined('MULTISITE') || !defined('SUBDOMAIN_INSTALL')) {
+            return false;
+        }
+
+        if(MULTISITE == false) {
+            return false;
+        } 
+
+        if(SUBDOMAIN_INSTALL == false) {
+            return false;
+        }
+
+        return true;
     }
 
     public function sanitizeAdminUrl($url, $path, $blog_id)
