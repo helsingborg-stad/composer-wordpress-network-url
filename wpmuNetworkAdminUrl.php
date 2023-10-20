@@ -3,7 +3,7 @@
 /*
 Plugin Name:    WPMU Network Admin Url
 Description:    Fixes network url's when running WordPress as multisite in a composer installed wp instance.
-Version:        1.0
+Version:        1.1
 Author:         Sebastian Thulin
 */
 
@@ -13,11 +13,10 @@ class ComposerNetworkAdmin
 {
     public function __construct()
     {
-        if(!$this->shouldRun()) {
-            return;
-        }
         add_filter('network_admin_url', array($this, 'sanitizeNetworkAdminUrl'), 50, 2);
-        add_filter('admin_url', array($this, 'sanitizeAdminUrl'), 50, 3);
+        if($this->shouldRun()) {
+            add_filter('admin_url', array($this, 'sanitizeAdminUrl'), 50, 3);
+        }
     }
 
     public function shouldRun() {
